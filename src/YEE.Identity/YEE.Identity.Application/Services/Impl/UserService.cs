@@ -27,7 +27,13 @@ namespace YEE.Identity.Application.Services.Impl
 
         public async Task<PagedResult<User>> GetAll(GetAllUserRequest r)
         {
-            var filteredUsers = _userRepository.GetAll();
+            var filteredUsers = _userRepository
+                .GetAll()
+                .WhereIf(r.UserID.HasValue, x => x.ID == r.UserID)
+                .WhereIf(!string.IsNullOrEmpty(r.Term), x => (x.FirstName + " " + x.LastName).ToLower().Contains(r.Term.ToLower()))
+                .WhereIf(!string.IsNullOrEmpty(r.Email), x => x.Email==r.Email);
+
+
             var pagedUsers = filteredUsers.PageBy(r);
 
             var totalCount = filteredUsers.Count();
