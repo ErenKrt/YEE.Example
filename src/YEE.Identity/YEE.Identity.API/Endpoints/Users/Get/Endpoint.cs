@@ -14,7 +14,7 @@ namespace YEE.Identity.API.Endpoints.Users.Get
         {
             Get("/users/get");
             Version(1);
-            //Permissions("UserGet");
+            Permissions("UserGet");
         }
 
         public override async Task HandleAsync(GetUserRequest r, CancellationToken c)

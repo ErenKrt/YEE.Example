@@ -17,7 +17,7 @@ namespace YEE.Identity.API.Endpoints.Users.Create
         {
             Post("/users/create");
             Version(1);
-            //Permissions("UserCreate");
+            Permissions("UserCreate");
         }
 
         public override async Task HandleAsync(CreateOrUpdateUserRequest data, CancellationToken ct)
