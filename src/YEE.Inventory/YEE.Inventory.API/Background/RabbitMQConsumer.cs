@@ -35,13 +35,12 @@ namespace YEE.Inventory.API.Background
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += async (ch, ea) =>
+            var deletedConsumer = new EventingBasicConsumer(_channel);
+            deletedConsumer.Received += async (ch, ea) =>
             {
                 // received message  
                 var body = ea.Body.ToArray();
                 var content = Encoding.UTF8.GetString(body);
-
                 var userID = Convert.ToInt32(content);
 
                 using (var scope = _services.CreateScope())
@@ -53,7 +52,29 @@ namespace YEE.Inventory.API.Background
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
 
-            _channel.BasicConsume("User.Deleted", false, consumer);
+            _channel.BasicConsume("User.Deleted", false, deletedConsumer);
+
+            var createdConsumer = new EventingBasicConsumer(_channel);
+            createdConsumer.Received += async(ch, ea) =>
+            {
+                var body = ea.Body.ToArray();
+                var content = Encoding.UTF8.GetString(body);
+                var userID = Convert.ToInt32(content);
+
+                _channel.BasicAck(ea.DeliveryTag, false);
+
+                using (var scope = _services.CreateScope())
+                {
+                    var service = scope.ServiceProvider.GetRequiredService<IItemService>();
+                    await service.Create(new()
+                    {
+                        Name= "First Item",
+                        OwnerID=userID,
+                        Quantity= "1"
+                    });
+                }
+            };
+            _channel.BasicConsume("User.Created", false, createdConsumer);
 
             return Task.CompletedTask;
         }

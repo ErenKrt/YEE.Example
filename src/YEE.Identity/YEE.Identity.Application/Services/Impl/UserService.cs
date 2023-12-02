@@ -43,7 +43,8 @@ namespace YEE.Identity.Application.Services.Impl
 
         public async Task Create(User user)
         {
-            await _userRepository.InsertAsync(user);
+            var created= await _userRepository.InsertAsync(user);
+            _mQService.SendMessage("User.Created", created.ID);
         }
 
         public async Task Delete(int id)
