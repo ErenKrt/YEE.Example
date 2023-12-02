@@ -42,6 +42,8 @@ namespace YEE.Identity.Application
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddSingleton<IMQService, MQService>();
             return services;
         }
 
