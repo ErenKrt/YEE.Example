@@ -5,13 +5,21 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YEE.Identity", "YEE.Identity", "{540B5504-D8D1-4E7E-9FF0-BBB09745A41D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YEE.Identity.API", "src\YEE.Identity\YEE.Identity.API\YEE.Identity.API.csproj", "{946A6355-D6B7-4624-AB0C-4A9D009B2169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YEE.Identity.API", "src\YEE.Identity\YEE.Identity.API\YEE.Identity.API.csproj", "{946A6355-D6B7-4624-AB0C-4A9D009B2169}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YEE.Identity.Application", "src\YEE.Identity\YEE.Identity.Application\YEE.Identity.Application.csproj", "{0DD35C1C-98A5-4466-8106-08304237B652}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YEE.Identity.Application", "src\YEE.Identity\YEE.Identity.Application\YEE.Identity.Application.csproj", "{0DD35C1C-98A5-4466-8106-08304237B652}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YEE.Identity.DataAccess", "src\YEE.Identity\YEE.Identity.DataAccess\YEE.Identity.DataAccess.csproj", "{011A7A14-CC60-4F58-9264-D75148762D1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YEE.Identity.DataAccess", "src\YEE.Identity\YEE.Identity.DataAccess\YEE.Identity.DataAccess.csproj", "{011A7A14-CC60-4F58-9264-D75148762D1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YEE.Identity.Core", "src\YEE.Identity\YEE.Identity.Core\YEE.Identity.Core.csproj", "{38B23138-1D37-4236-A2D7-6A5F357D1D0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YEE.Identity.Core", "src\YEE.Identity\YEE.Identity.Core\YEE.Identity.Core.csproj", "{38B23138-1D37-4236-A2D7-6A5F357D1D0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YEE.IK", "YEE.IK", "{E56923F3-776B-4918-8ED5-6BD3FA123013}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YEE.IK.API", "src\YEE.IK\YEE.IK.API\YEE.IK.API.csproj", "{C877C539-0D8B-40C6-881F-C0EDFD542917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YEE.Inventory", "YEE.Inventory", "{1FCD48BD-9E6E-4E9B-AFB0-060019A329F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YEE.Inventory.API", "src\YEE.Inventory\YEE.Inventory.API\YEE.Inventory.API.csproj", "{CFA14189-E85D-4C92-9C78-6A5F6CF72EE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +43,14 @@ Global
 		{38B23138-1D37-4236-A2D7-6A5F357D1D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B23138-1D37-4236-A2D7-6A5F357D1D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38B23138-1D37-4236-A2D7-6A5F357D1D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C877C539-0D8B-40C6-881F-C0EDFD542917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C877C539-0D8B-40C6-881F-C0EDFD542917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C877C539-0D8B-40C6-881F-C0EDFD542917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C877C539-0D8B-40C6-881F-C0EDFD542917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA14189-E85D-4C92-9C78-6A5F6CF72EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA14189-E85D-4C92-9C78-6A5F6CF72EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA14189-E85D-4C92-9C78-6A5F6CF72EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA14189-E85D-4C92-9C78-6A5F6CF72EE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +60,8 @@ Global
 		{0DD35C1C-98A5-4466-8106-08304237B652} = {540B5504-D8D1-4E7E-9FF0-BBB09745A41D}
 		{011A7A14-CC60-4F58-9264-D75148762D1D} = {540B5504-D8D1-4E7E-9FF0-BBB09745A41D}
 		{38B23138-1D37-4236-A2D7-6A5F357D1D0E} = {540B5504-D8D1-4E7E-9FF0-BBB09745A41D}
+		{C877C539-0D8B-40C6-881F-C0EDFD542917} = {E56923F3-776B-4918-8ED5-6BD3FA123013}
+		{CFA14189-E85D-4C92-9C78-6A5F6CF72EE7} = {1FCD48BD-9E6E-4E9B-AFB0-060019A329F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F27B215-27D1-4A96-BBF1-5B7C03C795FA}
