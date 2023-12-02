@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 using System.Text;
+using System.Threading.Channels;
 using YEE.Identity.Application.Models;
 using YEE.Identity.Application.Services.Interfaces;
 
@@ -10,8 +12,8 @@ namespace YEE.Identity.Application.Services.Impl
     public class MQService : IMQService, IDisposable
     {
         private readonly AppSettings _appSettings;
-        private ConnectionFactory _connectionFactory;
-        private IConnection? _connection;
+        public ConnectionFactory _connectionFactory;
+        public IConnection? _connection;
         private IModel? _channel;
 
         public MQService(IOptions<AppSettings> appSettings)
@@ -61,6 +63,19 @@ namespace YEE.Identity.Application.Services.Impl
                 basicProperties: null,
                 body: Encoding.UTF8.GetBytes(message)
             );
+        }
+        public void SendMessage(string queue, int message)
+        {
+            SendMessage(queue, message.ToString());
+        }
+
+        public void CreateConsumer(string queue, EventHandler<BasicDeliverEventArgs> handler)
+        {
+            EnsureConnection();
+
+            var consumer = new EventingBasicConsumer(_channel);
+            consumer.Received += handler;
+            _channel.BasicConsume(queue: queue, autoAck: true, consumer: consumer);
         }
 
         public void Dispose()

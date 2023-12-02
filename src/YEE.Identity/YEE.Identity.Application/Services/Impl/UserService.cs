@@ -17,10 +17,12 @@ namespace YEE.Identity.Application.Services.Impl
     public class UserService : IUserService
     {
         public IGenericRepository<User> _userRepository { get; set; }
+        public IMQService _mQService {  get; set; }
 
-        public UserService(IGenericRepository<User> userRepository)
+        public UserService(IGenericRepository<User> userRepository, IMQService mQService)
         {
             _userRepository = userRepository;
+            _mQService = mQService;
         }
 
         public async Task<PagedResult<User>> GetAll(GetAllUserRequest r)
@@ -46,6 +48,7 @@ namespace YEE.Identity.Application.Services.Impl
 
         public async Task Delete(int id)
         {
+            _mQService.SendMessage("User.Deleted", id);
             await _userRepository.DeleteAsync(id);
         }
 
