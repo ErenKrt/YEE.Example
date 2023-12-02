@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YEE.Identity.Application.Models
+namespace YEE.Identity.Application.Models.Services.Auth
 {
     public class LoginRequest
     {

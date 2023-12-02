@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YEE.Identity.Core.Entities
+namespace YEE.Identity.Core.Entities.Users
 {
     public class Permission : BaseEntity
     {

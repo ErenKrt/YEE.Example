@@ -9,8 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using YEE.Identity.Application.Helpers;
 using YEE.Identity.Application.Models;
+using YEE.Identity.Application.Models.Services.Auth;
 using YEE.Identity.Application.Services.Interfaces;
-using YEE.Identity.Core.Entities;
+using YEE.Identity.Core.Entities.Users;
 using YEE.Identity.Core.Helpers.Interfaces;
 using YEE.Identity.DataAccess.EntityFramework.Interfaces;
 

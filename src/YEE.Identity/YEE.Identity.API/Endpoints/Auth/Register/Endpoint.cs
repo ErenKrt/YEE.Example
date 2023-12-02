@@ -1,5 +1,5 @@
 ﻿using FastEndpoints;
-using YEE.Identity.Application.Models;
+using YEE.Identity.Application.Models.Services.Auth;
 using YEE.Identity.Application.Services.Interfaces;
 
 namespace YEE.Identity.API.Endpoints.Auth.Register

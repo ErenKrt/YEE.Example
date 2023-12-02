@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YEE.Identity.Core.Entities
+namespace YEE.Identity.Application.Models.Services.Users
 {
-    public enum UserStatus
+    public class GetAllUserRequest : PagedRequest
     {
-        Active,
-        Inactive,
     }
 }
