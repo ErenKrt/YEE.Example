@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YEE.Inventory.API", "src\YE
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "YEE.IK.UI", "src\YEE.IK\yee.ik.ui\YEE.IK.UI.esproj", "{7F03D4FD-0FE3-459F-8BA8-BC5DEAD4C6B6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{1DC67EA7-1181-4105-AE8B-C837482ABF73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
