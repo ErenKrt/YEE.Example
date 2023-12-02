@@ -13,6 +13,9 @@ namespace YEE.Identity.DataAccess.EntityFramework
     {
         protected IConfiguration Configuration { get; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<UserPermission> UserPermissions { get; set; }
+
         public DatabaseContext(
             DbContextOptions<DatabaseContext> options,
             IConfiguration configuration

@@ -13,5 +13,6 @@ namespace YEE.Identity.Core.Entities
         public virtual string Email { get; set; }
         public virtual string Password { get; set; }
         public virtual UserStatus Status {  get; set; }
+        public virtual ICollection<UserPermission> Permissions { get; set; }
     }
 }
