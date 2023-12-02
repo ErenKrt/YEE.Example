@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YEE.Identity.Core.Entities;
 
-namespace YEE.Identity.Core.Entities
+namespace YEE.Identity.Application.Models.Services.Users
 {
-    public enum UserStatus
+    public class GetUserRequest : BaseEntity
     {
-        Active,
-        Inactive,
     }
 }

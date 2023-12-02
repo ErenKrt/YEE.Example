@@ -5,6 +5,7 @@ using YEE.Identity.API.Extensions;
 using YEE.Identity.API.Models;
 using YEE.Identity.Application;
 using YEE.Identity.Application.Models;
+using YEE.Identity.Application.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("YEE"));
@@ -35,7 +36,6 @@ builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddHelpers();
 builder.Services.AddServices();
 builder.Services.AddMapper();
-
 var app = builder.Build();
 
 app.UseAuthentication();
@@ -57,4 +57,12 @@ app.UseFastEndpoints(x =>
 
 app.UseSwaggerGen();
 app.UseErrorHandler();
+
+using (var scope = app.Services.CreateScope())
+{
+    var mqService = scope.ServiceProvider.GetRequiredService<IMQService>();
+    mqService.CreateQueue("User.Deleted");
+    mqService.CreateQueue("User.Created");
+}
+
 app.Run();

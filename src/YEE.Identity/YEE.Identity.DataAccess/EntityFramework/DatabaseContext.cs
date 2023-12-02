@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YEE.Identity.Core.Entities;
+using YEE.Identity.Core.Entities.Users;
 
 namespace YEE.Identity.DataAccess.EntityFramework
 {
@@ -13,6 +13,9 @@ namespace YEE.Identity.DataAccess.EntityFramework
     {
         protected IConfiguration Configuration { get; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<UserPermission> UserPermissions { get; set; }
+
         public DatabaseContext(
             DbContextOptions<DatabaseContext> options,
             IConfiguration configuration

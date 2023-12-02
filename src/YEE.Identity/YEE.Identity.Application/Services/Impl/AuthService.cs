@@ -9,8 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using YEE.Identity.Application.Helpers;
 using YEE.Identity.Application.Models;
+using YEE.Identity.Application.Models.Services.Auth;
 using YEE.Identity.Application.Services.Interfaces;
-using YEE.Identity.Core.Entities;
+using YEE.Identity.Core.Entities.Users;
 using YEE.Identity.Core.Helpers.Interfaces;
 using YEE.Identity.DataAccess.EntityFramework.Interfaces;
 
@@ -33,7 +34,10 @@ namespace YEE.Identity.Application.Services.Impl
         public async Task<LoginResponse> Login(LoginRequest data)
         {
 
-            var user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.Email == data.Email && x.Password == _hasher.Hash(data.Password));
+            var user = await _userRepository.GetAll()
+                .Include(x=>x.Permissions)
+                .ThenInclude(x=>x.Permission)
+                .FirstOrDefaultAsync(x => x.Email == data.Email && x.Password == _hasher.Hash(data.Password));
             if (user is null)
             {
                 throw new InfoException("Email adresinizi veya şifrenizi yanlış girdiniz. Tekrar deneyiniz !");
@@ -47,6 +51,7 @@ namespace YEE.Identity.Application.Services.Impl
                privileges: u =>
                {
                    u.Claims.Add(new("ID", user.ID.ToString()));
+                   u.Permissions.AddRange(user.Permissions.Select(x=>x.Permission.Name));
                }
            );
 

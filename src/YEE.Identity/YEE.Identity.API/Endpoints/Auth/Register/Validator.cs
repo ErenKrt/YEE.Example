@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 using FluentValidation;
-using YEE.Identity.Application.Models;
+using YEE.Identity.Application.Models.Services.Auth;
 
 namespace YEE.Identity.API.Endpoints.Auth.Register
 {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace YEE.Identity.Application.Models
 {
-    public class LoginResponse
+    public class PagedRequest
     {
-        public string AccessToken { get; set; }
-        public DateTime ExpireDate { get; set; }
+        public int Skip { get; set; } = 0;
+        public int Take { get; set; } = 15;
     }
 }

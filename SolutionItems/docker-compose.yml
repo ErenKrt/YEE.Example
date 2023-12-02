@@ -1,0 +1,88 @@
+version: '3.3'
+
+services:
+  ik-ui:
+    container_name: YEE.IK.UI
+    build:
+      context: .
+      dockerfile: YEE.IK.UI.Dockerfile
+    ports:
+      - "1883:1883"
+    restart: on-failure
+    networks:
+      - yee-network
+
+  identity-api:
+    container_name: YEE.Identity.API
+    build:
+      context: .
+      dockerfile: YEE.Identity.API.Dockerfile
+    ports:
+      - "1881:1881"
+    depends_on:
+      - ik-ui
+      - identity-db
+    volumes:
+      - /home/YEE.Identity/data/appsettings.json:/app/appsettings.json:ro
+    restart: on-failure
+    networks:
+      - yee-network
+
+  identity-db:
+    container_name: YEE.Identity.DB
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - /home/YEE.Identity/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Eren*123
+      - POSTGRES_USER=postgres
+    networks:
+      - yee-network
+
+  inventory-api:
+    container_name: YEE.Inventory.API
+    build:
+      context: .
+      dockerfile: YEE.Inventory.API.Dockerfile
+    ports:
+      - "1882:1882"
+    depends_on:
+      - ik-ui
+      - identity-api
+      - identity-db
+      - inventory-db
+    volumes:
+      - /home/YEE.Inventory/data/appsettings.json:/app/appsettings.json:ro
+    restart: on-failure
+    networks:
+      - yee-network
+
+  inventory-db:
+    container_name: YEE.Inventory.DB
+    image: postgres:14-alpine
+    ports:
+      - 5433:5432
+    volumes:
+      - /home/YEE.Inventory/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Eren*123
+      - POSTGRES_USER=postgres
+    networks:
+      - yee-network
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: YEE.RabbitMQ
+    environment:
+      - RABBITMQ_DEFAULT_USER=eren
+      - RABBITMQ_DEFAULT_PASS=Eren*123
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - yee-network
+
+networks:
+  yee-network:
